@@ -199,6 +199,12 @@ const args = _yargs
     default: false,
     description: "Skip TLS certificate check when calling Dependency-Track. ",
   })
+  .option("dt-compress-bom", {
+    type: "boolean",
+    default: false,
+    description:
+      "Gzip-compress the BOM before base64-encoding it for Dependency-Track uploads.",
+  })
   .option("api-key", {
     description: "Dependency track api key",
     type: "string",
