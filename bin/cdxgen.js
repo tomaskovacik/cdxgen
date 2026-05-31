@@ -255,7 +255,7 @@ const args = _yargs
   })
   .option("dt-compress-bom", {
     type: "boolean",
-    default: false,
+    default: true,
     description:
       "Gzip-compress the BOM before base64-encoding it for Dependency-Track uploads.",
   })
