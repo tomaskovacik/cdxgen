@@ -253,12 +253,6 @@ const args = _yargs
     default: false,
     description: "Skip TLS certificate check when calling Dependency-Track. ",
   })
-  .option("dt-compress-bom", {
-    type: "boolean",
-    default: true,
-    description:
-      "Gzip-compress the BOM before base64-encoding it for Dependency-Track uploads.",
-  })
   .option("api-key", {
     description: "Dependency track api key",
     type: "string",
@@ -2143,7 +2137,8 @@ const writeCycloneDxOutput = (jsonFile, bomJson, options) => {
         target: outputPlan.outputs.spdx,
       });
     }
-  } else if (!options.print) {
+  } else if (!options.print && !options.serverUrl) {
+    // Only print to stdout if not submitting to server
     if (outputPlan.formats.has("spdx") && bomNSData?.spdxJson) {
       console.log(stringifyJson(bomNSData.spdxJson, options.jsonPretty));
     } else if (bomNSData.bomJson) {
